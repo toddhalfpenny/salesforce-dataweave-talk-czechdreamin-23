@@ -1,8 +1,8 @@
 {
-  "name": "reveal.js",
-  "version": "4.5.0",
-  "description": "The HTML Presentation Framework",
-  "homepage": "https://revealjs.com",
+  "name": "salesforce-dataweave-talk-czechdreamin-23",
+  "version": "0.1",
+  "description": "Easy, Scalable, and Efficient Apex Data Transforms with DataWeace - CzechDreamin '23 Talk",
+  "homepage": "",
   "subdomain": "revealjs",
   "main": "dist/reveal.js",
   "module": "dist/reveal.esm.js",
@@ -13,13 +13,13 @@
     "build": "gulp build"
   },
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "https://hakim.se"
+    "name": "Todd Halfpenny",
+    "email": "todd@toddhalfpenny.com",
+    "web": "https://toddhalfpenny.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "url": "git://github.com/toddhalfpenny/salesforce-dataweave-talk-czechdreamin-23.git"
   },
   "engines": {
     "node": ">=10.0.0"
