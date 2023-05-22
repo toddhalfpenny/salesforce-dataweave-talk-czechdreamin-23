@@ -12,6 +12,9 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link href="../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" rel="stylesheet">
+		<link href="../node_modules/@fortawesome/fontawesome-free/css/brands.css" rel="stylesheet">
+		<link href="../node_modules/@fortawesome/fontawesome-free/css/solid.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="reveal">
@@ -127,6 +130,23 @@
 				 -->
 				 <section class="has-header">
 					<h1>Let's dive in</h1>
+					<pre class="center"><code data-trim data-line-numbers="0|1|2|3|4-7|0">
+						%dw 2.0
+						output application/csv
+						---
+						[
+							{"Name": "CzechDreamin", "City": "Prague"},
+							{"Name": "London's Calling", "City": "London"}
+						]
+					</code></pre>
+					<div class="fragment">
+						<i class="fa fa-down-long fa-2x center"></i>
+						<pre class="center language-css"><code data-trim data-line-numbers>
+							Name,City
+							CzechDreamin,Prague
+							London's Calling,London						
+						</code></pre>
+					</div>
 					<aside class="notes">
 						<ul>
 							<li></li>
@@ -138,50 +158,236 @@
 
 				<!-- 
 					===========================================================
-					Our first example DEMO
-					TODO: 
+					Let's go a bit further
+				 -->
+				 <section class="has-header">
+					<h1>Let's go a bit further</h1>
+					<pre><code data-trim data-line-numbers>
+						%dw 2.0
+						var data = [
+							{"Name": "CzechDreamin", "City": "Prague"},
+							{"Name": "London's Calling", "City": "London"}
+						]
+						output application/json
+						---
+						{
+							"Names": data.Name,
+							"Cities": data.City
+						}
+					</code></pre>
+					<aside class="notes">
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+					</aside>	
+
+				</section>
+				<section class="has-header">
+					<h1>Let's go a bit further</h1>
+					<div class="cols-2 gap-1">
+						<div class="col">
+						<h3>DataWeave Script</h3>
+						<pre><code data-trim data-line-numbers>
+							%dw 2.0
+							var data = [
+								{"Name": "CzechDreamin", ...,
+								{"Name": "London's Calling", ...
+							]
+							output application/json
+							---
+							{
+								"Names": data.Name,
+								"Cities": data.City
+							}
+						</code></pre>
+						</div>
+						<div class="col">
+							<h3>Output</h3>
+							<pre class="language-json"><code data-trim>
+								{
+									"Names": [
+										"CzechDreamin",
+										"London's Calling"
+									],
+									"Cities": [
+										"Prague",
+										"London"
+									]
+								}					
+							</code></pre>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li></li>
+							<li></li>
+						</ul>
+					</aside>	
+				</section>
+
+
+				<!-- 
+					===========================================================
+					PLAYGROUND - VIDEO
+					- Payload
+				 -->
+				<section id="playground" class="fullvideo" data-background-video ="assets/vids/playground-01.webm" 
+				data-background-size="contain">
+					<aside class="notes">
+						<ul>
+							<li></li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- 
+					===========================================================
+					VS CODE
 					- VIDEO
+					- extension - file creation and preview
 				 -->
-				 <section class="has-header">
-					<h1>EXAMPLE DEMO VID</h1>
-					<aside class="notes">
-						<ul>
-							<li></li>
-							<li></li>
-						</ul>
-					</aside>	
-				</section>
-
-
-				<!-- 
-					===========================================================
-					TOOLING
-					TODO: 
-					- PLAYGROUND - VIDEO
-					- VS CODE - VIDEO
-				 -->
-				 <section class="has-header">
-					<h1>TOOLING DEMO VIDS</h1>
-					<aside class="notes">
-						<ul>
-							<li></li>
-							<li></li>
-						</ul>
-					</aside>	
-				</section>
-
+				 <section id="vscode-01" class="fullvideo" data-background-video ="assets/vids/vscode-01.webm" 
+				 data-background-size="contain">
+					 <aside class="notes">
+						 <ul>
+							 <li></li>
+						 </ul>
+					 </aside>
+				 </section>
 				
+
 				<!-- 
 					===========================================================
-					Use Cases an more examples
+					YOU SAID THERE'D BE APEX
+				-->
+				<section id="you-said-apex" class="has-header">
+					<h1>You said somthing about be Apex</h1>
+					<!-- TODO - IMAGE - Stropping kid -->
+
+					<pre class="center fragment"><code class="javascript" data-trim data-line-numbers>
+						%dw 2.0
+						input records application/csv
+						output application/apex
+						---
+						records map(record) -> {
+							FirstName: record.fname,
+							LastName: record.lname,
+							Email: record.email
+						} as Object {class: "Contact"}
+					</code></pre>
+					<aside class="notes">
+					<ul>
+						<li>output</li>
+						<li>records as input</li>
+						<li>as Object</li>
+					</ul>
+					</aside>
+				</section>
+				
+
+				<!-- 
+					===========================================================
+					Apex Finally
+				-->
+				<section id="apex-finally" class="has-header">
+					<h1>Apex... finally</h1>
+					<!-- TODO - IMAGE - Stropping kid -->
+
+					<pre><code class="java" data-trim data-line-numbers="0|2-3|5|6-8|10-11|0">
+						// CSV data for Contacts
+						String scriptName = 'csvToContacts';
+						String inCsv = 'fname,lname,email\nCodey,"The Bear",codey@salesforce.com';
+
+						DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
+						DataWeave.Result dwresult = dwscript.execute(
+							new Map&#60String, Object>{'records' => inCsv}
+						);
+
+						List&#60Contact> results = (List&#60Contact>)dwresult.getValue();
+						System.debug(results[0]);
+					</code></pre>
+					<aside class="notes">
+					<ul>
+						<li>output</li>
+						<li>records as input</li>
+						<li>as Object</li>
+					</ul>
+					</aside>
+				</section>
+				<section id="csvToContacts-01" class="fullvideo" data-background-video ="assets/vids/csvToContacts-01.webm" 
+				 data-background-size="contain">
+					 <aside class="notes">
+						 <ul>
+							 <li></li>
+						 </ul>
+					 </aside>
+				 </section>
+
+
+				<!-- 
+					===========================================================
+					Let's go further
 					TODO: 
 					- CSV
 					- Web Service
 					- data types/functional + array funcs/See notes
 					- XML Example
 				 -->
+				 <section id="take-things-further-01" class="has-header">
+					<h1>Let's take things further</h1>
+					<div class="cols-1-3">
+						<div class="col">
+							<h2>What we have</h2>
+							<ul>
+								<li>Account</li>
+								<li>Invoices</li>
+							</ul>
+							<p>&nbsp;</p>
+							<h2>What we want</h2>
+							<ul>
+								<li>XML Output</li>
+								<li>Date formatting</li>
+								<li>Defaults</li>
+							</ul>
+						</div>
+						<div class="col">
+							<pre><code class="xml" data-trim data-line-numbers="0|3,6|8|9|0">
+								&#60?xml version='1.0' encoding='UTF-8'?>
+								&#60REPORT>
+									&#60VENDOR_NAME ID="Id">Name&#60/VENDOR_NAME>
+									&#60INVOICES>
+										&#60INVOICE>
+										&#60INVOICE_NUM ID="Id">Name&#60/INVOICE_NUM>
+										&#60ENT_AMT>Amount&#60/ENT_AMT>
+										&#60INVOICE_DATE>dd-MMM-yy&#60/INVOICE_DATE>
+										&#60PAYMENT_TERMS>default = 30&#60/PAYMENT_TERMS>
+										&#60/INVOICE>
+
+										&#60INVOICE>
+										...
+										&#60/INVOICE>
+									&#60/INVOICES>
+								&#60/REPORT>
+							</code></pre>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>XML - namespacing, attributes</li>
+							<li>Functional -> funcs as vars</li>
+						</ul>
+					</aside>	
+				</section>
+
+				<!-- 
+					===========================================================
+					OUR INVOICE RECORDS
+					TODO: 
+				 -->
 				 <section class="has-header">
-					<h1>Going further</h1>
+					<h1>Our Records</h1>
+					<img class="screenshot center" src="assets/imgs/dw-invoices-02.png"/>
 					<aside class="notes">
 						<ul>
 							<li></li>
@@ -189,22 +395,128 @@
 						</ul>
 					</aside>	
 				</section>
+				
+				<!-- 
+					===========================================================
+					WEB SERVICE
+				-->
+				<section id="invoice-web-service" class="has-header">
+					<h1>A simple web service</h1>
+
+					<pre><code class="java" data-trim data-line-numbers="0|1-2|5-6|8-9|10-12|15|0">
+						@HttpGet
+						global static void doGet() {
+							...
+							
+							List&#60DW_Invoice__c> invoices = [SELECT ...];
+							Account acc = invoices[0].Account__r;
+
+							String scriptName = 'invoiceToXml';
+							DataWeave.Script dwscript = DataWeave.Script.createScript(scriptName);
+							DataWeave.Result dwresult = dwscript.execute(new Map&#60String, Object>{
+								'invoices' => invoices, 'account' => acc
+							});
+
+							RestResponse res = RestContext.response;
+							res.responseBody = Blob.valueOf(dwresult.getValueAsString());
+						}
+					</code></pre>
+					<aside class="notes">
+					<ul>
+						<li>2 Inputs to the script</li>
+						<li>HOW SIMPLE!</li>
+					</ul>
+					</aside>
+				</section>
 
 				
 				<!-- 
 					===========================================================
+					INVOICE TARGET XML
+				-->
+				<section id="invoice-target-xml" class="has-header">
+					<pre><code class="java" data-trim data-line-numbers="0|3|4,15|6|8|9">
+						&#60?xml version='1.0' encoding='UTF-8'?>
+						&#60REPORT>
+							&#60VENDOR_NAME ID="Id">Name&#60/VENDOR_NAME>
+							&#60INVOICES>
+								&#60INVOICE>
+								&#60INVOICE_NUM ID="Id">Name&#60/INVOICE_NUM>
+								&#60ENT_AMT>Amount&#60/ENT_AMT>
+								&#60INVOICE_DATE>dd-MMM-yy&#60/INVOICE_DATE>
+								&#60PAYMENT_TERMS>default = 30&#60/PAYMENT_TERMS>
+								&#60/INVOICE>
+
+								&#60INVOICE>
+								...
+								&#60/INVOICE>
+							&#60/INVOICES>
+						&#60/REPORT>
+					</code></pre>
+					<aside class="notes">
+					<ul>
+						<li></li>
+					</ul>
+					</aside>
+				</section>
+				
+				
+				<!-- 
+					===========================================================
+					INVOICE DW SCRIPT
+				-->
+				<section id="invoice-dw-script" class="has-header">
+					<pre><code class="java" data-trim data-line-numbers="0|1-2|3|6|7-9,15|12-13|14|0">
+						input invoices application/apex
+						input account application/apex
+						var defaultPaymentTerms = 30
+						---
+						REPORT: {
+							VENDOR_NAME @(ID: account.Id): account.Name,
+							INVOICES:
+								INVOICE:
+									invoices map(record) -> {
+										INVOICE_NUM @(ID: record.Id): record.Name,
+										ENT_AMT: record.Entered_Amount__c,
+										INVOICE_DATE : (record.Invoice_Date__c >> "UTC") 
+										  as String {format: "dd-MMM-yy"},
+										PAYMENT_TERMS: record.Payment_Terms__c default defaultPaymentTerms
+									}
+						}
+					</code></pre>
+					<aside class="notes">
+					<ul>
+						<li>2 Inputs to the script</li>
+					</ul>
+					</aside>
+				</section>
+
+
+				<!-- 
+					===========================================================
+					WEB SERVICE IN ACTION
+				 -->
+				<section id="csvToContacts-01" class="fullvideo" data-background-video ="assets/vids/postman-01.webm" 
+				 data-background-size="contain">
+					 <aside class="notes">
+						 <ul>
+							 <li></li>
+						 </ul>
+					 </aside>
+				 </section>
+
+				<!-- 
+					===========================================================
 					LIMITATIONS & Benefits
-					TODO: 
-					- PLAYGROUND - VIDEO
-					- VS CODE - VIDEO
 				 -->
 				 <section class="has-header">
-					<h1>What else do I need to know</h1>
+					<h1>There it is<span class="fragment">, but what else do I need to know</span></h1>
 					<div class="cols-2">
 						<div class="col fragment">
 							<h2>Limitations</h2>
 							<ul>
 								<li class="">Performance</li>
+								<li class="">No Excel Type</li>
 							</ul>
 						</div>
 						<div class="col fragment">
@@ -219,7 +531,7 @@
 					</div>
 					<aside class="notes">
 						<ul>
-							<li></li>
+							<li>10 lines of apex, 10 of script</li>
 							<li>So less erroneous</li>
 						</ul>
 					</aside>	
@@ -238,6 +550,7 @@
 						<div class="col fragment">
 							<h2>Roadmap</h2>
 							<ul>
+								<li class="">GA (fingers crossed)</li>
 								<li class="">Performance</li>
 							</ul>
 						</div>
@@ -323,16 +636,23 @@
 			});
 			Reveal.on( 'slidechanged', event => {
 				console.log('slidechanged', event.currentSlide);
-				switch ( event.currentSlide.id ) {
-					case 'title' :
-					case 'thankyou':
-						hideFooter();
-						hideHeader();
-						break;
-					default: 
-						showFooter();
-						showHeader();
+				if (event.currentSlide.className.includes('has-header')) {
+					showFooter();
+					showHeader();
+				} else {
+					hideFooter();
+					hideHeader();
 				}
+				//console.log( 'classname', event.currentSlide.className);
+				//setTimeout(() => {
+				//	if (event.currentSlide.className.includes('fullvideo')) {
+				//		const vidBackground = document.getElementsByClassName('slide-background present')[0];
+				//		console.log(vidBackground);
+				//		if (vidBackground) {
+				//			vidBackground.getElementsByTagName('video')[0].play();
+				//		}
+				//	}
+				//}, 500);
 			} );
 
 			function hideFooter() {
