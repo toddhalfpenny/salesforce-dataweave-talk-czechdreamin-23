@@ -35,6 +35,11 @@
 				-->
 				<section id="title" class="title-slide" data-background-image ="assets/imgs/opening-slide.svg" 
 				data-background-size="contain">
+				<aside class="notes">
+					<ul>
+						<li>Thank sponsors and organisers</li>
+					</ul>
+				</aside>	
 				</section>
 
 
@@ -114,7 +119,7 @@
 					</ul>
 					<aside class="notes">
 						<ul>
-							<li></li>
+							<li>Less errors - built in functions</li>
 							<li></li>
 						</ul>
 					</aside>	
@@ -191,8 +196,8 @@
 						<pre><code data-trim data-line-numbers>
 							%dw 2.0
 							var data = [
-								{"Name": "CzechDreamin", ...,
-								{"Name": "London's Calling", ...
+								{"Name": "CzechDreamin", ...},
+								{"Name": "London's Calling", ...}
 							]
 							output application/json
 							---
@@ -236,7 +241,13 @@
 				data-background-size="contain">
 					<aside class="notes">
 						<ul>
-							<li></li>
+							<li>UI Left input, center script, right output</li>
+							<li>Swap input</li>
+							<li>Swap output</li>
+							<li>Root element for XML</li>
+							<li>Child elements - still taking the 1st line as element names</li>
+							<li>Map custom element names</li>
+							<li>Built in functions</li>
 						</ul>
 					</aside>
 				</section>
@@ -251,7 +262,13 @@
 				 data-background-size="contain">
 					 <aside class="notes">
 						 <ul>
-							 <li></li>
+							 <li>VS Code extension</li>
+							 <li>Command palette - create mapping</li>
+							 <li>Preview of output</li>
+							 <li>Define input variable - put var into transform</li>
+							 <li>Sample data -  set CSV content</li>
+							 <li>Output updates</li>
+							 <li>Apex errors</li>
 						 </ul>
 					 </aside>
 				 </section>
@@ -265,7 +282,7 @@
 					<h1>You said somthing about be Apex</h1>
 					<!-- TODO - IMAGE - Stropping kid -->
 
-					<pre class="center fragment"><code class="javascript" data-trim data-line-numbers>
+					<pre class="center fragment"><code class="javascript" data-trim data-line-numbers="0|2-3|5-9|0">
 						%dw 2.0
 						input records application/csv
 						output application/apex
@@ -309,9 +326,7 @@
 					</code></pre>
 					<aside class="notes">
 					<ul>
-						<li>output</li>
-						<li>records as input</li>
-						<li>as Object</li>
+						<li></li>
 					</ul>
 					</aside>
 				</section>
@@ -319,7 +334,9 @@
 				 data-background-size="contain">
 					 <aside class="notes">
 						 <ul>
-							 <li></li>
+							 <li>string csv format</li>
+							 <li>Show debug line</li>
+							 <li>Took 13 seconds!!!</li>
 						 </ul>
 					 </aside>
 				 </section>
@@ -374,8 +391,11 @@
 					</div>
 					<aside class="notes">
 						<ul>
+							<li>Data model</li>
 							<li>XML - namespacing, attributes</li>
 							<li>Functional -> funcs as vars</li>
+							<li>Formatting</li>
+							<li>Default</li>
 						</ul>
 					</aside>	
 				</section>
@@ -390,8 +410,9 @@
 					<img class="screenshot center" src="assets/imgs/dw-invoices-02.png"/>
 					<aside class="notes">
 						<ul>
-							<li></li>
-							<li></li>
+							<li>2 entries</li>
+							<li>Date</li>
+							<li>1 null payment term</li>
 						</ul>
 					</aside>	
 				</section>
@@ -423,6 +444,7 @@
 					</code></pre>
 					<aside class="notes">
 					<ul>
+						<li>Basic web service</li>
 						<li>2 Inputs to the script</li>
 						<li>HOW SIMPLE!</li>
 					</ul>
@@ -455,7 +477,11 @@
 					</code></pre>
 					<aside class="notes">
 					<ul>
-						<li></li>
+						<li>Target XML</li>
+						<li>Elements have attributes</li>
+						<li>Number of INVOICES</li>
+						<li>Format the date</li>
+						<li>Default value</li>
 					</ul>
 					</aside>
 				</section>
@@ -487,6 +513,11 @@
 					<aside class="notes">
 					<ul>
 						<li>2 Inputs to the script</li>
+						<li>Var - not best example for default</li>
+						<li>Puts ID attribute inside VENDOR_NAME</li>
+						<li>Map</li>
+						<li>Date format</li>
+						<li>Default</li>
 					</ul>
 					</aside>
 				</section>
@@ -500,7 +531,8 @@
 				 data-background-size="contain">
 					 <aside class="notes">
 						 <ul>
-							 <li></li>
+							 <li>Postman</li>
+							 <li>Needed several tries - timeouts</li>
 						 </ul>
 					 </aside>
 				 </section>
