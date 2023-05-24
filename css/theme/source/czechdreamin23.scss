@@ -256,6 +256,16 @@ img.screenshot, video {
     border-radius: 0.2em;
 }
 
+img.qrcode {
+    max-width: 3em;
+    position: absolute;
+    right: 0;
+    margin-top: -1.5em;
+}
+ img.sljackson {
+    width: 70%;
+ }
+ 
 // ICONS
 i.center {
     color: var(--accent);
